@@ -3,19 +3,15 @@ import { memo } from "react";
 /**
  * Propsの型定義
  */
-type Props = Readonly<{
+export type Props = Readonly<{
   /*
    * Child Elements
    */
   children?: never;
   /**
-   * Code
+   * text
    */
   text?: string;
-  /**
-   * Placeholder
-   */
-  placeholder?: string;
   /**
    * onChange
    */
@@ -25,14 +21,27 @@ type Props = Readonly<{
 /**
  * Input Component
  */
-export const Input: React.FC<Props> = memo(
-  ({ text, placeholder, onChange }: Props): JSX.Element => {
-    console.info("render: Input Component");
+export const Input: React.FC<Props> = ({ text, onChange }: Props): JSX.Element => {
+  console.info("render: Input Component");
+  return (
+    <>
+      <div>
+        <input type="text" value={text} onChange={onChange} />
+      </div>
+    </>
+  );
+};
 
+/**
+ * InputWithMemo Component
+ */
+export const InputWithMemo: React.FC<Props> = memo(
+  ({ text, onChange }: Props): JSX.Element => {
+    console.info("render: InputWithMemo Component");
     return (
       <>
         <div>
-          <input type="text" value={text} placeholder={placeholder} onChange={onChange} />
+          <input type="text" value={text} onChange={onChange} />
         </div>
       </>
     );
