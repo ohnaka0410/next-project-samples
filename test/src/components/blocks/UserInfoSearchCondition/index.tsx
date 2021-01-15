@@ -9,17 +9,17 @@ export type Condition = Readonly<{
   /**
    * ユーザ名
    */
-  userName?: string;
+  userName: string;
 }>;
 
 /**
  * Propsの型定義
  */
-type Props = Readonly<{
+export type Props = Readonly<{
   /*
    * Child Elements
    */
-  children?: Node;
+  children?: never;
   /**
    * Condition
    */
@@ -27,7 +27,7 @@ type Props = Readonly<{
   /**
    * update Condition
    */
-  updateCondition: (dispatch: (prevCondition: Condition) => Condition) => void;
+  updateCondition: (condition: Condition) => void;
 }>;
 
 /**
@@ -37,21 +37,21 @@ export const UserInfoSearchCondition: React.FC<Props> = memo(
   ({ condition, updateCondition }: Props): JSX.Element => {
     console.info("render: UserInfoSearchCondition Component");
 
-    const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
-      console.info("onChange");
-      updateCondition((prevCondition) => {
-        console.info(prevCondition);
-        return {
-          ...prevCondition,
+    const onChangeUserName = useCallback(
+      (event: React.ChangeEvent<HTMLInputElement>): void => {
+        console.info("onChange");
+        updateCondition({
+          ...condition,
           userName: event.target.value,
-        };
-      });
-    }, []);
+        });
+      },
+      [updateCondition]
+    );
 
     return (
       <>
         <div>
-          <Input text={condition.userName} placeholder="user name" onChange={onChange} />
+          <Input text={condition.userName} placeholder="user name" onChange={onChangeUserName} />
         </div>
       </>
     );

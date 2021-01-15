@@ -3,7 +3,7 @@ import { memo } from "react";
 /**
  * Propsの型定義
  */
-type Props = Readonly<{
+export type Props = Readonly<{
   /*
    * Child Elements
    */

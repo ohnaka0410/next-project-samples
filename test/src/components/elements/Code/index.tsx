@@ -3,7 +3,7 @@ import { memo } from "react";
 /**
  * Propsの型定義
  */
-type Props = Readonly<{
+export type Props = Readonly<{
   /*
    * Child Elements
    */
@@ -17,13 +17,15 @@ type Props = Readonly<{
 /**
  * Code Component
  */
-export const Code: React.FC<Props> = memo(({ code }: Props): JSX.Element => {
-  console.info("render: Code Component");
-  return (
-    <>
-      <pre>
-        <code>{code}</code>
-      </pre>
-    </>
-  );
-});
+export const Code: React.FC<Props> = memo(
+  ({ code }: Props): JSX.Element => {
+    console.info("render: Code Component");
+    return (
+      <>
+        <pre>
+          <code>{code}</code>
+        </pre>
+      </>
+    );
+  }
+);

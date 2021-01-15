@@ -16,8 +16,9 @@ module.exports = {
     sourceType: "module",
     project: "./tsconfig.eslint.json",
   },
-  "env": { "browser": true, "node": true, "es6": true },
-  "rules": {
+  env: { browser: true, node: true, es6: true },
+  rules: {
     // custom
-  }
+    "@typescript-eslint/no-unused-vars": ["error", { args: "none" }],
+  },
 };
